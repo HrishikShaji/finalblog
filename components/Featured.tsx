@@ -23,7 +23,7 @@ export const Featured = async () => {
   }
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      sample
+      iuhuhuhu sample
       <h1>{data.posts[0].title}</h1>
     </div>
   );
