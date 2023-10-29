@@ -16,15 +16,15 @@ const fetchPosts = async (url: string) => {
 };
 
 export const Featured = async () => {
-  const data = await fetchPosts(`${baseUrl}api/posts?page=1`);
+  const data = await fetchPosts(`${baseUrl}api/sample`);
 
-  if (!data.posts) {
+  if (!data) {
     return <div>nothing</div>;
   }
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       iuhuhuhu sample
-      <h1>{data.posts[0].title}</h1>
+      <h1>{data}</h1>
     </div>
   );
 };
