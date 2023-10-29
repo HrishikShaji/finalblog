@@ -1,4 +1,4 @@
-import { baseUrl } from "@/lib/connect";
+import { baseUrl } from "../lib/connect";
 
 const fetchPosts = async (url: string) => {
   const res = await fetch(url, {

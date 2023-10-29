@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/connect";
+import prisma from "@/app/lib/connect";
 
 export const GET = async (req: Request) => {
   const { searchParams } = new URL(req.url);
