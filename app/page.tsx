@@ -16,7 +16,7 @@ const fetchPosts = async (url: string) => {
 };
 
 export default async function Home() {
-  const data = await fetchPosts(`${baseUrl}/api/posts?page=1`);
+  const data = await fetchPosts(`${baseUrl}api/posts?page=1`);
   console.log(data);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
