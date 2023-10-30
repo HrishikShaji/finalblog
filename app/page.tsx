@@ -4,8 +4,12 @@ import { EditorsPosts } from "./components/EditorsPosts";
 import { Featured } from "./components/Featured";
 import { PopularPosts } from "./components/PopularPosts";
 
-export default function Home({ searchParams }: { searchParams: SearchParams }) {
-  const page = parseInt(searchParams.page) || 1;
+export default function Home({
+  searchParams,
+}: {
+  searchParams?: { page: string };
+}) {
+  const page = searchParams?.page ? parseInt(searchParams.page) : 1;
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <Featured />
