@@ -7,6 +7,7 @@ import Link from "next/link";
 export const EditorsPosts = async () => {
   const { posts } = await fetchPosts(`${baseUrl}api/posts?page=1&editor=true`);
   if (!posts) return <div>Loading...</div>;
+  console.log("editor", posts);
   return (
     <div className="flex flex-col gap-5">
       <h1 className="text-3xl font-semibold">Editors Picks</h1>
