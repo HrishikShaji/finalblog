@@ -5,15 +5,16 @@ import Link from "next/link";
 
 export const CategoryList = async () => {
   const data = await fetchPosts(`${baseUrl}api/categories`);
-	if(!data){
-		return <div>Loading...</div>
-	}
+  if (!data) {
+    return <div>Loading...</div>;
+  }
+  console.log("categories are", data);
   return (
     <div className="flex flex-col gap-5 py-10">
       <h1 className="text-3xl font-semibold">Popular categories</h1>
       <div className="w-full flex">
         <div className="flex gap-4">
-          {data?.map((item: Category) => (
+          {data.map((item: Category) => (
             <Link href={`/blog?cat=${item.slug}`} key={item.id}>
               {item.title}
             </Link>
