@@ -1,6 +1,6 @@
 import { baseUrl } from "../lib/connect";
 
-async function fetchPosts(url: string) {
+const fetchPosts = async (url: string) => {
   const res = await fetch(url, {
     cache: "no-store",
     headers: {
@@ -13,7 +13,7 @@ async function fetchPosts(url: string) {
   }
 
   return res.json();
-}
+};
 
 export const Featured = async () => {
   const data = await fetchPosts(`${baseUrl}api/sample`);
