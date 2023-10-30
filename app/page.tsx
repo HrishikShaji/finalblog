@@ -1,4 +1,3 @@
-import { CategoryList } from "./components/CategoryList";
 import { EditorsPosts } from "./components/EditorsPosts";
 import { Featured } from "./components/Featured";
 import { PopularPosts } from "./components/PopularPosts";
@@ -9,7 +8,6 @@ export default function Home() {
       <Featured />
       <PopularPosts />
       <EditorsPosts />
-      <CategoryList />
     </main>
   );
 }
