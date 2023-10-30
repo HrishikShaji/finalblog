@@ -9,11 +9,13 @@ export const GET = async (req: Request) => {
   const featured = searchParams.get("editor") || null;
   const popular = searchParams.get("popular") || null;
   const POST_PER_PAGE = 3;
+  const validPage = Math.max(1, isNaN(page) ? 1 : Math.floor(page));
 
+  console.log("page:", page), console.log("skip", validPage);
   try {
     const query = {
       take: POST_PER_PAGE,
-      skip: POST_PER_PAGE * (page - 1),
+      skip: POST_PER_PAGE * (validPage - 1),
       where: {
         ...(cat && { catSlug: cat }),
         ...(featured && { featured: true }),
@@ -30,8 +32,10 @@ export const GET = async (req: Request) => {
       prisma.post.findMany(query as any),
       prisma.post.count({ where: query.where }),
     ]);
+
     return new NextResponse(JSON.stringify({ posts, count }));
   } catch (err) {
+    console.log(err);
     return new NextResponse(
       JSON.stringify({ message: "Something went wrong" }),
     );
