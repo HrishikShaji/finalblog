@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import prisma from "@/app/lib/connect";
 
 export const GET = async (req: Request) => {
@@ -33,11 +32,9 @@ export const GET = async (req: Request) => {
       prisma.post.count({ where: query.where }),
     ]);
 
-    return new NextResponse(JSON.stringify({ posts, count }));
+    return new Response(JSON.stringify({ posts, count }));
   } catch (err) {
     console.log(err);
-    return new NextResponse(
-      JSON.stringify({ message: "Something went wrong" }),
-    );
+    return new Response(JSON.stringify({ message: "Something went wrong" }));
   }
 };
