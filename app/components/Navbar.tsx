@@ -11,6 +11,7 @@ export const Navbar = () => {
         <Link href="/">Home</Link>
         <Link href="/">Contact</Link>
         <Link href="/">About</Link>
+        <Link href="/search">Search</Link>
         <AuthLinks />
       </div>
     </div>
