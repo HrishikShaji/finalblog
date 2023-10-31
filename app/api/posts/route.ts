@@ -1,3 +1,4 @@
+import { getAuthSession } from "@/app/lib/auth";
 import prisma from "@/app/lib/connect";
 
 export const GET = async (req: Request) => {
@@ -35,6 +36,25 @@ export const GET = async (req: Request) => {
     return new Response(JSON.stringify({ posts, count }));
   } catch (err) {
     console.log(err);
+    return new Response(JSON.stringify({ message: "Something went wrong" }));
+  }
+};
+
+export const POST = async (req: Request) => {
+  const session = await getAuthSession();
+
+  if (!session) {
+    return new Response(JSON.stringify({ message: "Not authenticated" }));
+  }
+
+  try {
+    const body = await req.json();
+
+    const post = await prisma.post.create({
+      data: { ...body, userEmail: session?.user?.email },
+    });
+    return new Response(JSON.stringify(post));
+  } catch (err) {
     return new Response(JSON.stringify({ message: "Something went wrong" }));
   }
 };
