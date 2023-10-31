@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={inter.className}>
+        <body className="bg-neutral-800 text-white">
           <Navbar />
           {children}
         </body>

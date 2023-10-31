@@ -1,3 +1,4 @@
+import { Comments } from "@/app/components/Comments";
 import { EditorOutput } from "@/app/components/EditorOutput";
 import { baseUrl } from "@/app/lib/connect";
 import { fetchPosts } from "@/app/lib/post";
@@ -32,6 +33,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <h1 className="text-3xl font-semibold">{data.title}</h1>
       </div>
       <EditorOutput content={data.content} />
+      <Comments postSlug={data.slug} />
     </div>
   );
 };
