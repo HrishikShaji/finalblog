@@ -33,7 +33,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
         <h1 className="text-3xl font-semibold">{data.title}</h1>
       </div>
       <EditorOutput content={data.content} />
-      <Comments postSlug={data.slug} />
+      <Comments postSlug={slug} />
     </div>
   );
 };
