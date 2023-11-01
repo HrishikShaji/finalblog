@@ -16,7 +16,7 @@ export default function Home({
       <Section section="editor" title="Editor's Picks" />
       <CategoryList />
       <div>
-        <CardList page={page} />
+        <CardList page={page} title="Recent Posts" />
       </div>
     </main>
   );

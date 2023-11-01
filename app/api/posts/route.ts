@@ -6,18 +6,17 @@ export const GET = async (req: Request) => {
 
   const page = Number(searchParams.get("page"));
   const cat = searchParams.get("cat") || null;
-  const featured = searchParams.get("editor") || null;
-  const popular = searchParams.get("popular") || null;
+  const featured = cat === "editor" ? true : null;
+  const popular = cat === "popular" ? true : null;
   const POST_PER_PAGE = 3;
   const validPage = Math.max(1, isNaN(page) ? 1 : Math.floor(page));
 
-  console.log("page:", page), console.log("skip", validPage);
   try {
     const query = {
       take: POST_PER_PAGE,
       skip: POST_PER_PAGE * (validPage - 1),
       where: {
-        ...(cat && { catSlug: cat }),
+        ...(cat && cat !== "editor" && cat !== "popular" && { catSlug: cat }),
         ...(featured && { featured: true }),
       },
       orderBy: {
@@ -28,6 +27,7 @@ export const GET = async (req: Request) => {
         votes: true,
       },
     };
+    console.log(query);
     const [posts, count] = await prisma.$transaction([
       prisma.post.findMany(query as any),
       prisma.post.count({ where: query.where }),

@@ -9,14 +9,9 @@ type SearchParams = {
 const Page = ({ searchParams }: { searchParams: SearchParams }) => {
   const page = parseInt(searchParams.page) || 1;
   const { cat } = searchParams;
-  const { sec } = searchParams;
-
   return (
-    <div>
-      <h1>{cat} Blog</h1>
-      <div>
-        <CardList page={page} cat={cat} sec={sec} />
-      </div>
+    <div className="pt-10 flex flex-col gap-10">
+      <CardList page={page} cat={cat} title={cat} />
     </div>
   );
 };

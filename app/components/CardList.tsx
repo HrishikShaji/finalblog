@@ -7,12 +7,16 @@ import { Pagination } from "./Pagination";
 interface CardListProps {
   page: number;
   cat?: string;
-  sec?: string;
+  title: string;
 }
 
-export const CardList: React.FC<CardListProps> = async ({ page, cat, sec }) => {
+export const CardList: React.FC<CardListProps> = async ({
+  page,
+  cat,
+  title,
+}) => {
   const { posts, count } = await fetchPosts(
-    `${baseUrl}/api/posts?page=${page}&cat=${cat || ""}&${sec}=true`,
+    `${baseUrl}/api/posts?page=${page}&cat=${cat || ""}`,
   );
   const POST_PER_PAGE = 2;
 
@@ -21,7 +25,7 @@ export const CardList: React.FC<CardListProps> = async ({ page, cat, sec }) => {
 
   return (
     <div className="flex flex-col gap-10">
-      <h1 className="text-3xl font-semibold w-full">Recent Posts</h1>
+      <h1 className="text-3xl font-semibold w-full">{title}</h1>
 
       <div className="flex  gap-3">
         <div className="w-full flex flex-col gap-3">
@@ -34,13 +38,7 @@ export const CardList: React.FC<CardListProps> = async ({ page, cat, sec }) => {
           })}
         </div>
       </div>
-      <Pagination
-        cat={cat}
-        page={page}
-        hasNext={hasNext}
-        sec={sec}
-        hasPrev={hasPrev}
-      />
+      <Pagination cat={cat} page={page} hasNext={hasNext} hasPrev={hasPrev} />
     </div>
   );
 };

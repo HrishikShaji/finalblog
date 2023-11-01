@@ -155,7 +155,6 @@ export const Editor = () => {
       slug: slugify(title),
       catSlug: cat,
     };
-    console.log(payload);
     try {
       const validatedPostData = await validatePostData(payload);
       createPost(validatedPostData);
@@ -173,24 +172,31 @@ export const Editor = () => {
   }
 
   return (
-    <div className="w-full p-4 bg-zinc-50 rounded-lg border border-zinc-200 text-black">
-      <form id="subreddit-post-form" className="w-fit" onSubmit={handleSubmit}>
-        <div className="prose prose-stone dark:prose-invert">
+    <div className="w-full text-white ">
+      <form
+        id="subreddit-post-form"
+        className="w-full flex flex-col gap-5 pb-10"
+        onSubmit={handleSubmit}
+      >
+        <div className=" flex flex-col gap-0 bg-neutral-700 ">
           <textarea
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="title"
-            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
+            placeholder="Title"
+            className="w-full text-center pt-5 resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none"
           />
           <input
             value={cat}
             onChange={(e) => setCat(e.target.value)}
             placeholder="Category"
-            className="w-full resize-none appearance-none overflow-hidden bg-transparent text-2xl font-bold focus:outline-none"
+            className="w-full text-center overflow-hidden bg-transparent text-2xl font-bold focus:outline-none"
           />
-          <div id="editor" className="min-h-[500px]"></div>
+          <div
+            id="editor"
+            className="min-h-[500px] w-full bg-transparent"
+          ></div>
         </div>
-        <button className="text-white bg-black py-1 px-2 rounded-md">
+        <button className="text-white bg-black py-4 w-full">
           {isPending ? "uploading" : "POST"}
         </button>
       </form>

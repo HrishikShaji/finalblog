@@ -11,7 +11,7 @@ interface SectionProps {
 
 export const Section: React.FC<SectionProps> = async ({ section, title }) => {
   const { posts } = await fetchPosts(
-    `${baseUrl}api/posts?page=1&${section}=true`,
+    `${baseUrl}api/posts?page=1&cat=${section}`,
   );
   if (!posts) return <div>Loading...</div>;
   return (
@@ -28,9 +28,12 @@ export const Section: React.FC<SectionProps> = async ({ section, title }) => {
             </div>
           );
         })}
-        <button className="px-3 py-2 border-2 border-white">
-          <Link href={`/blog?sec=${section}`}>See more</Link>
-        </button>
+        <Link
+          className="px-3 py-2 border-2 border-white"
+          href={`/blog?cat=${section}`}
+        >
+          See more
+        </Link>
       </div>
     </div>
   );
