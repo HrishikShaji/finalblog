@@ -17,6 +17,7 @@ export const Card: React.FC<CardProps> = ({ item }) => {
             image={item.user.image}
             email={item.userEmail}
             date={item.createdAt}
+            size="small"
           />
         </div>
       )}
