@@ -12,11 +12,13 @@ export const Card: React.FC<CardProps> = ({ item }) => {
   return (
     <div className="flex relative h-full w-full bg-gray-500 justify-center items-center overflow-hidden">
       {item.user.image && (
-        <User
-          image={item.user.image}
-          email={item.userEmail}
-          date={item.createdAt}
-        />
+        <div className=" absolute z-10  top-2 left-2 ">
+          <User
+            image={item.user.image}
+            email={item.userEmail}
+            date={item.createdAt}
+          />
+        </div>
       )}
       <h1 className="text-xl font-bold absolute z-10">{item.title}</h1>
       <PostImage content={item.content} size="large" />

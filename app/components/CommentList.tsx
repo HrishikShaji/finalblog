@@ -9,11 +9,13 @@ interface CommentListProps {
   comments: any;
   postSlug: string | null;
   commentId?: string;
+  reply: boolean;
 }
 
 export const CommentList: React.FC<CommentListProps> = ({
   comments,
   postSlug,
+  reply,
 }) => {
   const [showReplies, setShowReplies] = useState(
     comments ? Array(comments.length).fill(false) : [],
@@ -27,12 +29,15 @@ export const CommentList: React.FC<CommentListProps> = ({
   return (
     <div className="w-full overflow-x-hidden">
       {comments?.map((comment: any, index: number) => {
+        console.log(reply);
         return (
           <div
             key={comment.id}
-            className="border-b-2 pb-4 flex flex-col gap-2 items-start border-white"
+            className={` pb-4 flex flex-col gap-2 pl-4   items-start border-neutral-700 ${
+              reply && "border-l"
+            } `}
           >
-            <Comment item={comment} postSlug={postSlug} />
+            <Comment item={comment} postSlug={postSlug} isReply={reply} />
             <button
               onClick={() => toggleReplies(index)}
               className="px-2 font-semibold text-gray-400  py-1 text-xs border-2 border-gray-400 focus:outline-none"
@@ -40,7 +45,7 @@ export const CommentList: React.FC<CommentListProps> = ({
               {showReplies[index] ? "Hide Replies" : "Show Replies"}
             </button>
             {showReplies[index] && (
-              <div className="ml-10 w-full">
+              <div className="pl-10 w-full">
                 <CommentListContainer
                   commentId={comment.id}
                   postSlug={postSlug}
@@ -81,6 +86,11 @@ const CommentListContainer: React.FC<{
   }
 
   return (
-    <CommentList comments={data} postSlug={postSlug} commentId={commentId} />
+    <CommentList
+      comments={data}
+      postSlug={postSlug}
+      commentId={commentId}
+      reply={true}
+    />
   );
 };

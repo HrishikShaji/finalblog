@@ -1,17 +1,21 @@
 import Image from "next/image";
-import { formatTimeToNow } from "../lib/utils";
+import { cn, formatTimeToNow } from "../lib/utils";
 
 interface UserProps {
   image: string;
   email: string;
   date: Date;
+  size: "small" | "medium";
 }
 
-export const User: React.FC<UserProps> = ({ image, email, date }) => {
+export const User: React.FC<UserProps> = ({ image, email, date, size }) => {
   return (
-    <div className="flex gap-2 absolute z-10  top-2 left-2">
+    <div className="flex gap-2 ">
       <Image
-        className="object-cover  w-12 h-12"
+        className={cn("object-cover", {
+          "w-12 h-12": size === "medium",
+          "w-10 h-10": size === "small",
+        })}
         height={1000}
         width={1000}
         alt="image"

@@ -88,7 +88,7 @@ export const Comments: React.FC<CommentsProps> = ({ postSlug }) => {
         {isLoading ? (
           "Loading"
         ) : (
-          <CommentList comments={data} postSlug={postSlug} />
+          <CommentList reply={false} comments={data} postSlug={postSlug} />
         )}
       </div>
     </div>

@@ -6,13 +6,19 @@ import { toast } from "./ui/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { formatTimeToNow } from "@/app/lib/utils";
+import { User } from "./User";
 
 interface CommentProps {
   item: CommentChild;
   postSlug: string | null;
+  isReply: boolean;
 }
 
-export const Comment: React.FC<CommentProps> = ({ item, postSlug }) => {
+export const Comment: React.FC<CommentProps> = ({
+  item,
+  postSlug,
+  isReply,
+}) => {
   const [replies, setReplies] = useState(false);
   const [reply, setReply] = useState("");
 
@@ -51,30 +57,25 @@ export const Comment: React.FC<CommentProps> = ({ item, postSlug }) => {
 
   return (
     <div
-      className="flex flex-col w-full gap-6 border-b border-gray-700 pt-2 pb-5"
+      className="flex flex-col w-full gap-6  border-b border-gray-700 pt-2 pb-5"
       key={item.id}
     >
       <div>
-        <div className="flex gap-2 items-start w-full">
+        <div className="flex flex-col gap-2 items-start w-full">
           {item?.user?.image && (
-            <Image
-              className="h-14 w-14 rounded-full"
-              src={item.user.image}
-              alt="image"
-              height={1000}
-              width={1000}
+            <User
+              image={item.user.image}
+              email={item.user.email}
+              date={item.createdAt}
+              size={isReply ? "small" : "medium"}
             />
           )}
-          <div className="flex flex-col gap-2 w-full">
-            <div className="flex gap-2 items-center">
-              <span className="font-semibold">{item.user.email}</span>
-              <span className="text-xs text-gray-400">
-                {formatTimeToNow(new Date(item.createdAt))}
-              </span>
-            </div>
-            <div>
-              <p>{item.desc}</p>
-            </div>
+          <div
+            className={` ${
+              isReply ? "pl-10" : "pl-14"
+            } flex flex-col gap-2 w-full`}
+          >
+            <p>{item.desc}</p>
             <div className="w-full">
               <button
                 onClick={() => setReplies(!replies)}
