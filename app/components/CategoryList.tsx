@@ -8,7 +8,6 @@ export const CategoryList = async () => {
   if (!data) {
     return <div>Loading...</div>;
   }
-  console.log("categories are", data);
   return (
     <div className="flex flex-col gap-5 py-10">
       <h1 className="text-3xl font-semibold">Popular categories</h1>

@@ -26,7 +26,11 @@ export const CardList: React.FC<CardListProps> = async ({ page, cat, sec }) => {
       <div className="flex  gap-3">
         <div className="w-full flex flex-col gap-3">
           {posts?.map((item: ExtendedPost) => {
-            return <Card item={item} key={item.id} />;
+            return (
+              <div key={item.id} className="h-[300px]">
+                <Card item={item} />;
+              </div>
+            );
           })}
         </div>
       </div>
