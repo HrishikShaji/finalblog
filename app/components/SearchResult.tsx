@@ -17,7 +17,7 @@ export const SearchResult: React.FC<SearchResultProps> = ({
   return (
     <div
       onClick={() => router.push(`/posts/${slug}`)}
-      className="flex gap-2 cursor-pointer p-1 hover:bg-neutral-500 bg-neutral-600"
+      className="flex gap-2 cursor-pointer p-1 hover:bg-neutral-700 bg-neutral-900 border-b-2 border-neutral-700 "
     >
       <PostImage content={content} size="small" />
       <div>

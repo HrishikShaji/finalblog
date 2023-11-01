@@ -10,7 +10,7 @@ const Page = async ({ params }: { params: { slug: string } }) => {
 
   const data: ExtendedPost = await fetchPosts(`${baseUrl}api/posts/${slug}`);
   return (
-    <div className="pt-20 p-10 flex flex-col gap-10">
+    <div className="pt-20  flex flex-col gap-10">
       {data.user.image && (
         <User
           size="medium"

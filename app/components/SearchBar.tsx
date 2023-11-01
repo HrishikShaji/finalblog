@@ -95,12 +95,12 @@ export const SearchBar: React.FC<SearchBarProps> = ({
   };
 
   return (
-    <div className="w-[50vw] relative">
+    <div className="w-full relative">
       <div className="flex gap-2 relative">
         <input
           ref={inputRef}
           onClick={() => setSuggestions(true)}
-          className="p-2 border-2 text-black w-full"
+          className="p-2 border-2 text-black w-full focus:outline-none"
           value={inputValue}
           onChange={(e) => handleChange(e.target.value)}
           placeholder="Type to search..."
@@ -115,7 +115,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
       {suggestions && (
         <div
           ref={searchRef}
-          className=" w-full max-h-[300px] overflow-y-scroll absolute z-10 bg-neutral-600 flex flex-col  "
+          className=" w-full max-h-[300px] overflow-y-scroll absolute z-10 bg-neutral-900 flex flex-col  "
         >
           {inputValue !== "" ? (
             results.map((post: ExtendedPost) => {
@@ -129,7 +129,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
               );
             })
           ) : (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-2 p-2">
               <h1>Recent Searches</h1>
               <div>
                 {recentSearches.map((post, i) => {

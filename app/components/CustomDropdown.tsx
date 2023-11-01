@@ -57,7 +57,7 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
           {values.map((item, i) => (
             <button
               key={i}
-              className="border-b-2 border-white py-2"
+              className="border-b-2 border-white bg-neutral-900 py-2 hover:bg-neutral-700"
               onClick={() => handleFunction(item.value)}
             >
               {item.title}
