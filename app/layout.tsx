@@ -19,9 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className="bg-neutral-800 text-white">
-          <Navbar />
-          {children}
+        <body className="bg-neutral-800 text-white  flex flex-col items-center">
+          <div className="max-w-5xl">
+            <Navbar />
+            {children}
+          </div>
         </body>
       </Providers>
     </html>

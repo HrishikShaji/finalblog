@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 interface PostImageProps {
   content: any;
-  size: "small" | "medium";
+  size: "small" | "medium" | "large";
 }
 
 export const PostImage: React.FC<PostImageProps> = ({ content, size }) => {
@@ -29,6 +29,7 @@ export const PostImage: React.FC<PostImageProps> = ({ content, size }) => {
         className={cn("bg-gray-500 flex justify-center items-center", {
           "w-10 h-10": size === "small",
           "w-40 h-40": size === "medium",
+          "w-full h-[400px]": size === "large",
         })}
       >
         ?
@@ -43,6 +44,7 @@ export const PostImage: React.FC<PostImageProps> = ({ content, size }) => {
       className={cn("object-cover", {
         "w-10 h-10": size === "small",
         "w-40 h-40": size === "medium",
+        "w-full h-full": size === "large",
       })}
       src={img}
     />

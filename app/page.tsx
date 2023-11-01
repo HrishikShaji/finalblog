@@ -11,7 +11,7 @@ export default function Home({
 }) {
   const page = searchParams?.page ? parseInt(searchParams.page) : 1;
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="pt-10 flex flex-col gap-10">
       <Featured />
       <PopularPosts />
       <EditorsPosts />
