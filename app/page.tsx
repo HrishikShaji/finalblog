@@ -1,8 +1,7 @@
 import { CardList } from "./components/CardList";
 import { CategoryList } from "./components/CategoryList";
-import { EditorsPosts } from "./components/EditorsPosts";
 import { Featured } from "./components/Featured";
-import { PopularPosts } from "./components/PopularPosts";
+import { Section } from "./components/Section";
 
 export default function Home({
   searchParams,
@@ -13,8 +12,8 @@ export default function Home({
   return (
     <main className="pt-10 flex flex-col gap-10">
       <Featured />
-      <PopularPosts />
-      <EditorsPosts />
+      <Section section="popular" title="Popular Posts" />
+      <Section section="editor" title="Editor's Picks" />
       <CategoryList />
       <div>
         <CardList page={page} />

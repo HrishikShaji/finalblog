@@ -29,7 +29,7 @@ export const PostImage: React.FC<PostImageProps> = ({ content, size }) => {
         className={cn("bg-gray-500 flex justify-center items-center", {
           "w-10 h-10": size === "small",
           "w-40 h-40": size === "medium",
-          "w-full h-[400px]": size === "large",
+          "w-full h-full": size === "large",
         })}
       >
         ?
