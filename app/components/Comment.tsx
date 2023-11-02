@@ -1,12 +1,12 @@
 "use client";
 import { CommentChild } from "@/types/types";
-import Image from "next/image";
 import { FormEvent, useState } from "react";
 import { toast } from "./ui/use-toast";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
-import { formatTimeToNow } from "@/app/lib/utils";
 import { User } from "./User";
+import { IoSend } from "react-icons/io5";
+import { Spinner } from "./Spinner";
 
 interface CommentProps {
   item: CommentChild;
@@ -43,6 +43,7 @@ export const Comment: React.FC<CommentProps> = ({
     onSuccess: () => {
       setReply("");
       queryClient.invalidateQueries({ queryKey: ["replies"] });
+      setReplies(false);
     },
   });
 
@@ -76,7 +77,7 @@ export const Comment: React.FC<CommentProps> = ({
             } flex flex-col gap-2 w-full`}
           >
             <p>{item.desc}</p>
-            <div className="w-full">
+            <div className="w-full flex flex-col gap-2 items-start">
               <button
                 onClick={() => setReplies(!replies)}
                 className="py-1 px-2 border-gray-400 focus:outline-none text-gray-400 font-semibold text-xs border-2"
@@ -85,19 +86,19 @@ export const Comment: React.FC<CommentProps> = ({
               </button>
               {replies && (
                 <form
-                  className="w-full flex gap-2"
+                  className="w-full flex gap-2 relative items-center"
                   onSubmit={(e) => handleReply(e, reply, item.id)}
                 >
-                  <input
-                    className="w-full bg-transparent border-b-2 focus:outline-none border-white"
+                  <textarea
+                    className="w-full bg-transparent scrollbar-hide pr-10 resize-none border-b-2 focus:outline-none border-white"
                     value={reply}
                     onChange={(e) => setReply(e.target.value)}
                   />
                   <button
                     type="submit"
-                    className="py-1 px-3 border-2 focus:outline-none border-gray-400 text-xs font-semibold text-gray-400"
+                    className=" focus:outline-none absolute right-1"
                   >
-                    {isPending ? "Replying" : "Reply"}
+                    {isPending ? <Spinner /> : <IoSend />}
                   </button>
                 </form>
               )}

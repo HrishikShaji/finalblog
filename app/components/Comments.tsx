@@ -9,6 +9,8 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { toast } from "./ui/use-toast";
 import { baseUrl } from "../lib/connect";
+import { IoSend } from "react-icons/io5";
+import { Spinner } from "./Spinner";
 
 interface CommentsProps {
   postSlug: string;
@@ -68,17 +70,17 @@ export const Comments: React.FC<CommentsProps> = ({ postSlug }) => {
     <div className="flex flex-col gap-10 w-full">
       <h1>Comments</h1>
       {status === "authenticated" ? (
-        <div className="flex gap-2 w-full">
+        <div className="relative flex gap-2 w-full items-center">
           <textarea
-            className="w-full bg-transparent border-b-2 text-white focus:outline-none border-white"
+            className="w-full scrollbar-hide bg-transparent border-b-2 text-white pr-10 resize-none focus:outline-none border-white"
             onChange={(e) => setDesc(e.target.value)}
             value={desc}
           />
           <button
             onClick={() => handleSubmit(desc)}
-            className="px-3 py-2 border-gray-400  border-2"
+            className="absolute right-1 focus:outline-none"
           >
-            {isPending ? "sending" : "Send"}
+            {isPending ? <Spinner /> : <IoSend />}
           </button>
         </div>
       ) : (
@@ -86,7 +88,7 @@ export const Comments: React.FC<CommentsProps> = ({ postSlug }) => {
       )}
       <div className="flex flex-col gap-6 ">
         {isLoading ? (
-          "Loading"
+          <Spinner />
         ) : (
           <CommentList reply={false} comments={data} postSlug={postSlug} />
         )}

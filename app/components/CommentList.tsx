@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Comment } from "./Comment";
 import { useQuery } from "@tanstack/react-query";
 import { baseUrl } from "../lib/connect";
+import { Spinner } from "./Spinner";
 
 interface CommentListProps {
   comments: any;
@@ -28,33 +29,36 @@ export const CommentList: React.FC<CommentListProps> = ({
 
   return (
     <div className="w-full overflow-x-hidden">
-      {comments?.map((comment: any, index: number) => {
-        console.log(reply);
-        return (
-          <div
-            key={comment.id}
-            className={` pb-4 flex flex-col gap-2 pl-4   items-start border-neutral-700 ${
-              reply && "border-l"
-            } `}
-          >
-            <Comment item={comment} postSlug={postSlug} isReply={reply} />
-            <button
-              onClick={() => toggleReplies(index)}
-              className="px-2 font-semibold text-gray-400  py-1 text-xs border-2 border-gray-400 focus:outline-none"
+      {comments.length > 0 ? (
+        comments?.map((comment: any, index: number) => {
+          return (
+            <div
+              key={comment.id}
+              className={` pb-4 flex flex-col gap-2 pl-4   items-start border-neutral-700 ${
+                reply && "border-l"
+              } `}
             >
-              {showReplies[index] ? "Hide Replies" : "Show Replies"}
-            </button>
-            {showReplies[index] && (
-              <div className="pl-10 w-full">
-                <CommentListContainer
-                  commentId={comment.id}
-                  postSlug={postSlug}
-                />
-              </div>
-            )}
-          </div>
-        );
-      })}
+              <Comment item={comment} postSlug={postSlug} isReply={reply} />
+              <button
+                onClick={() => toggleReplies(index)}
+                className="px-2 font-semibold text-gray-400  py-1 text-xs border-2 border-gray-400 focus:outline-none"
+              >
+                {showReplies[index] ? "Hide Replies" : "Show Replies"}
+              </button>
+              {showReplies[index] && (
+                <div className="pl-10 w-full">
+                  <CommentListContainer
+                    commentId={comment.id}
+                    postSlug={postSlug}
+                  />
+                </div>
+              )}
+            </div>
+          );
+        })
+      ) : (
+        <div>{reply ? "No Replies yet..." : "No comments yet..."}</div>
+      )}
     </div>
   );
 };
@@ -78,7 +82,7 @@ const CommentListContainer: React.FC<{
   });
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (isError) {
