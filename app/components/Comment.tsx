@@ -73,14 +73,14 @@ export const Comment: React.FC<CommentProps> = ({
           )}
           <div
             className={` ${
-              isReply ? "pl-10" : "pl-14"
+              isReply ? "pl-8 sm:pl-10" : "pl-10 sm:pl-14"
             } flex flex-col gap-2 w-full`}
           >
             <p>{item.desc}</p>
             <div className="w-full flex flex-col gap-2 items-start">
               <button
                 onClick={() => setReplies(!replies)}
-                className="py-1 px-2 border-gray-400 focus:outline-none text-gray-400 font-semibold text-xs border-2"
+                className="p-1 sm:py-1 sm:px-2 border-gray-400 focus:outline-none text-gray-400 font-semibold text-xs border-2"
               >
                 {replies ? "Cancel" : "Reply"}
               </button>

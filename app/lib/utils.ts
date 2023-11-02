@@ -54,3 +54,21 @@ export function formatTimeToNow(date: Date): string {
     },
   });
 }
+
+export function getDesc(content: any) {
+  const desc = content.blocks.filter((block: any) => block.type == "paragraph");
+
+  function truncateString(item: string, limit: number) {
+    if (item.length > limit) {
+      return item.substring(0, limit) + "...";
+    } else {
+      return item;
+    }
+  }
+
+  const finalDesc = desc[0]?.data.text
+    ? truncateString(desc[0]?.data.text, 100)
+    : null;
+
+  return finalDesc;
+}
