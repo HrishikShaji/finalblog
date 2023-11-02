@@ -10,7 +10,7 @@ export default function Home({
 }) {
   const page = searchParams?.page ? parseInt(searchParams.page) : 1;
   return (
-    <main className="pt-10 flex flex-col gap-10">
+    <main className="pt-10 p-10 sm:p-0 flex flex-col gap-10">
       <Featured />
       <Section section="popular" title="Popular Posts" />
       <Section section="editor" title="Editor's Picks" />

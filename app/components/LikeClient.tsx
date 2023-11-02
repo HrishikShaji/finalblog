@@ -6,6 +6,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import { BiSolidLike, BiSolidDislike } from "react-icons/bi";
 
 interface LikeClientProps {
   item: ExtendedPost;
@@ -52,17 +53,11 @@ export const LikeClient: React.FC<LikeClientProps> = ({ item }) => {
   });
   return (
     <div className="absolute z-10 bottom-2 left-2 flex gap-2">
-      <button
-        className="px-2 py-1 border-white border-2"
-        onClick={() => vote("LIKE")}
-      >
-        Like
+      <button className="" onClick={() => vote("LIKE")}>
+        <BiSolidLike />
       </button>
-      <button
-        className="px-2 py-1 border-white border-2"
-        onClick={() => vote("UNLIKE")}
-      >
-        Dislike
+      <button className="" onClick={() => vote("UNLIKE")}>
+        <BiSolidDislike />
       </button>
       <h1>{likesAmt}</h1>
     </div>

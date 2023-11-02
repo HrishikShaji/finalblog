@@ -16,7 +16,7 @@ export const CategoryList = async () => {
           {data?.map((item: Category) => (
             <Link
               key={item.id}
-              className="border-2 border-white p-2"
+              className="border-2 border-white p-1 sm:p-2"
               href={`/blog?cat=${item.slug}`}
             >
               {item.title}

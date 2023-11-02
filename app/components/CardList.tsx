@@ -32,7 +32,7 @@ export const CardList: React.FC<CardListProps> = async ({
           {posts?.map((item: ExtendedPost) => {
             return (
               <div key={item.id} className="h-[300px]">
-                <Card item={item} />;
+                <Card item={item} />
               </div>
             );
           })}
