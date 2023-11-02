@@ -63,7 +63,7 @@ export const CustomDropdown: React.FC<CustomDropdownProps> = ({
       {isOpen && (
         <div
           ref={dropdownRef}
-          className="flex flex-col bg-neutral-500 absolute top-12 w-full"
+          className="flex flex-col bg-neutral-500 absolute z-50 top-12 w-full"
         >
           {values.map((item, i) => (
             <button

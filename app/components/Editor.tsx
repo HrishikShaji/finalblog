@@ -9,6 +9,7 @@ import { toast } from "./ui/use-toast";
 import { useMutation } from "@tanstack/react-query";
 import { PostCreationRequest, PostValidator } from "@/app/lib/validators/post";
 import { ZodError } from "zod";
+import { Spinner } from "./Spinner";
 
 export const Editor = () => {
   const ref = useRef<EditorJS | null>();
@@ -193,11 +194,11 @@ export const Editor = () => {
           />
           <div
             id="editor"
-            className="min-h-[500px] w-full bg-transparent"
+            className="min-h-[500px] p-5 sm:p-0 w-full bg-transparent"
           ></div>
         </div>
-        <button className="text-white bg-black py-4 w-full">
-          {isPending ? "uploading" : "POST"}
+        <button className="text-white bg-black py-4 w-full flex justify-center items-center">
+          {isPending ? <Spinner /> : "POST"}
         </button>
       </form>
     </div>

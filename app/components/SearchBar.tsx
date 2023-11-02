@@ -1,6 +1,7 @@
 import { ExtendedPost } from "@/types/types";
 import { useEffect, useRef, useState } from "react";
 import { SearchResult } from "./SearchResult";
+import { BiSolidHomeAlt2, BiSearch } from "react-icons/bi";
 
 interface SearchBarProps {
   setFinalResults: (values: any) => void;
@@ -96,7 +97,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <div className="w-full relative">
-      <div className="flex gap-2 relative">
+      <div className="flex items-center gap-2 relative">
         <input
           ref={inputRef}
           onClick={() => setSuggestions(true)}
@@ -109,7 +110,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({
           onClick={() => handleSearch(inputValue)}
           className="p-2  absolute font-semibold text-black right-0"
         >
-          Search
+          <BiSearch size={25} />
         </button>
       </div>
       {suggestions && (
